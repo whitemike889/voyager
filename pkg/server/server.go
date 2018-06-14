@@ -55,7 +55,7 @@ type VoyagerServer struct {
 }
 
 func (op *VoyagerServer) Run(stopCh <-chan struct{}) error {
-	go op.Operator.Run(stopCh)
+	// go op.Operator.Run(stopCh)
 	return op.GenericAPIServer.PrepareRun().Run(stopCh)
 }
 
