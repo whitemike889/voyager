@@ -216,6 +216,8 @@ type Endpoint struct {
 	CheckHealthPort string
 	TLSOption       string
 	SendProxy       string
+	AgentPort       string
+	AgentInter      string
 }
 
 type UserList struct {
