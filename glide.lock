@@ -1,5 +1,5 @@
-hash: 04147619cbc993d2b68c99f600124bc46b8d32f1b70f2f3a5f51fb85edaff06c
-updated: 2019-04-23T01:01:28.641980755-07:00
+hash: fd9e0c395b79d29f56071a734960277febcc6ed59bf709ba58c94ae0ce323b22
+updated: 2019-05-07T00:44:55.476919173-07:00
 imports:
 - name: bitbucket.org/ww/goautoneg
   version: 75cd24fc2f2c2a2088577d12123ddee5f54e0675
@@ -15,7 +15,7 @@ imports:
   - edgegrid
   - jsonhooks-v1
 - name: github.com/appscode/go
-  version: 50c98d5fbcddac827713a481a7e34a26df5e4b57
+  version: 60025f1135c977fecd189c12dbfa259d837d7a18
   subpackages:
   - analytics
   - context
@@ -107,7 +107,7 @@ imports:
   subpackages:
   - quantile
 - name: github.com/cloudflare/cloudflare-go
-  version: 360b08415ad4e17384aa3efefa58a72e54fd03db
+  version: 024278eb1b129df5cf9fdaf301c08b99283e81bc
 - name: github.com/coreos/etcd
   version: 27fc7e2296f506182f58ce846e48f36b34fe6842
   subpackages:
@@ -235,10 +235,14 @@ imports:
   version: 0ca9ea5df5451ffdf184b4428c902747c2c11cd7
 - name: github.com/go-ini/ini
   version: a9da9309fb4822643ceebb765f80025c35ac19a1
+- name: github.com/go-ole/go-ole
+  version: 97b6244175ae18ea6eef668034fd6565847501c9
+  subpackages:
+  - oleutil
 - name: github.com/go-openapi/jsonpointer
-  version: 46af16f9f7b149af66e5d1bd010e3574dc06de98
+  version: ef5f0afec364d3b9396b7b77b43dbe26bf1f8004
 - name: github.com/go-openapi/jsonreference
-  version: 13c6e3589ad90f49bd3e3bbe2c2cb3d7a4142272
+  version: 8483a886a90412cd6858df4ea3483dce9c8e35a3
 - name: github.com/go-openapi/spec
   version: 5bae59e25b21498baea7f9d46e9c147ec106a42e
 - name: github.com/go-openapi/swag
@@ -360,7 +364,7 @@ imports:
 - name: github.com/inconshreveable/mousetrap
   version: 76626ae9c91c4f2a10f34cad8ce83ea42c93bb75
 - name: github.com/JamesClonk/vultr
-  version: fed59ad207c9bda0a5dfe4d18de53ccbb3d80c91
+  version: fa1c0367800db75e4d10d0ec90c49a8731670224
   subpackages:
   - lib
 - name: github.com/jmespath/go-jmespath
@@ -485,6 +489,12 @@ imports:
   repo: https://github.com/sergi/go-diff
   subpackages:
   - diffmatchpatch
+- name: github.com/shirou/gopsutil
+  version: fa9845945e5b5c6ffb19b436586ff702a30417c5
+  subpackages:
+  - cpu
+  - internal/common
+  - load
 - name: github.com/sirupsen/logrus
   version: 89742aefa4b206dcf400792f3bd35b542998eb3b
 - name: github.com/soheilhy/cmux
@@ -499,6 +509,8 @@ imports:
   - doc
 - name: github.com/spf13/pflag
   version: 298182f68c66c05229eb03ac171abe6e309ee79a
+- name: github.com/StackExchange/wmi
+  version: e0a55b97c70558c92ce14085e41b35a894e93d3d
 - name: github.com/timewasted/linode
   version: 37e84520dcf74488f67654f9c775b9752c232dc1
   subpackages:
@@ -514,7 +526,7 @@ imports:
 - name: github.com/xeipuuv/gojsonreference
   version: bd5ef7bd5415a7ac448318e64f11a24cd21e594b
 - name: github.com/xeipuuv/gojsonschema
-  version: 6b940e3ae769b991236921508565ab80d55b324f
+  version: 354ad34c2300dd6e84920ac70b41487336219e43
 - name: github.com/xenolf/lego
   version: e57a0a1b7259bc2cd83fc3c5b9e6578a9dd432e3
   repo: https://github.com/appscode/lego.git
@@ -902,7 +914,7 @@ imports:
   - plugin/pkg/authenticator/token/webhook
   - plugin/pkg/authorizer/webhook
 - name: k8s.io/cli-runtime
-  version: 79bf4e0b64544d8c490247abae089bea572ddae6
+  version: f2b4781c3ae1e55b0657ab4fa0c8b702282d018f
   subpackages:
   - pkg/genericclioptions
   - pkg/genericclioptions/printers
@@ -1118,7 +1130,7 @@ imports:
 - name: k8s.io/utils
   version: 66066c83e385e385ccc3c964b44fd7dcd413d0ed
 - name: kmodules.xyz/client-go
-  version: 5dcc4cecf4c96d58e0624cd41311f3a4663db7d7
+  version: 85881479d87957cf3eab9424ec86bcc67dbfbac6
   subpackages:
   - admissionregistration/v1beta1
   - apiextensions/v1beta1
