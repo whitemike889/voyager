@@ -140,6 +140,8 @@ import:
   version: release-10.0
 - package: sigs.k8s.io/yaml
   version: v1.1.0
+- package: github.com/shirou/gopsutil
+  version: v2.19.04
 testImport:
 - package: github.com/stretchr/testify
   version: v1.2.2

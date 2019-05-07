@@ -2,6 +2,7 @@ package main
 
 import (
 	"bufio"
+	"context"
 	"encoding/json"
 	"flag"
 	"fmt"
@@ -13,6 +14,8 @@ import (
 	"time"
 
 	proxyproto "github.com/pires/go-proxyproto"
+	"github.com/shirou/gopsutil/cpu"
+	"github.com/shirou/gopsutil/load"
 )
 
 type Response struct {
@@ -153,6 +156,61 @@ func runProxy(port string) {
 	}
 }
 
+const LOADMAX = 80
+
+type agentTCPHandler struct {
+	port string
+}
+
+func (h agentTCPHandler) ServeTCP(conn net.Conn) {
+	fmt.Println("request on", conn.LocalAddr().String())
+
+	ctx := context.Background()
+	v, _ := load.AvgWithContext(ctx)
+
+	//totalCPU denotes total number of logical cpus
+	totalCPU, _ := cpu.Counts(true)
+
+	//calculate cpu load percentage based on last 5 minutes stats
+	load5util := (v.Load5 / float64(totalCPU)) * 100
+	fmt.Println("CPU Load Percentage: ", load5util)
+
+	// Rules:
+	// if cpu load is less than 80% (you can change the value in LOADMAX const),
+	// agent sever output = up 100%
+	// if it is 80% to less than 100%, output = up 50%
+	// if 100%, this server will be marked as down
+
+	resp := ""
+	if load5util < LOADMAX {
+		resp = "up 100%"
+	} else if load5util >= LOADMAX && load5util < 100 {
+		resp = "up 50%"
+	} else {
+		resp = "down#CPU overload"
+	}
+
+	conn.Write([]byte(resp + "\n"))
+}
+
+func runAgentTCP(port string) {
+	ln, err := net.Listen("tcp", port)
+	if err != nil {
+		fmt.Println(err)
+		return
+	}
+	fmt.Println("agent tcp server listening on port", port)
+	for {
+		con, err := ln.Accept()
+		if err != nil {
+			fmt.Println(err)
+			return
+		}
+		h := agentTCPHandler{port}
+		go h.ServeTCP(con)
+	}
+}
+
 func main() {
 	flag.Parse()
 
@@ -169,6 +227,8 @@ func main() {
 	GenCert("http.appscode.test,ssl.appscode.test")
 	go runHTTPS(":6443")
 	go runHTTPS(":3443")
+
+	go runAgentTCP(":5555")
 
 	hold()
 }
