@@ -40,7 +40,7 @@ spec:
         run: test-server
     spec:
       containers:
-      - image: appscode/test-server:2.2
+      - image: appscode/test-server:2.4
         name: test-server
 ---
 apiVersion: v1
