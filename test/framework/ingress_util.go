@@ -1108,10 +1108,17 @@ func (i *ingressInvocation) CreateResourceWithServiceAnnotation(svcAnnotation ma
 					TargetPort: intstr.FromInt(8080),
 					Protocol:   "TCP",
 				},
+				{
+					Name:       "agent-check-tcp",
+					Port:       5555,
+					TargetPort: intstr.FromInt(5555),
+					Protocol:   "TCP",
+				},
 			},
 			Selector: map[string]string{
 				"app": meta.Name,
 			},
+			Type: "NodePort",
 		},
 	})
 	if err != nil {
@@ -1157,6 +1164,10 @@ func (i *ingressInvocation) CreateResourceWithServiceAnnotation(svcAnnotation ma
 								{
 									Name:          "http-1",
 									ContainerPort: 8080,
+								},
+								{
+									Name:          "agent-check-tcp",
+									ContainerPort: 5555,
 								},
 							},
 						},

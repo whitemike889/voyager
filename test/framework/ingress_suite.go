@@ -79,6 +79,7 @@ func (i *ingressInvocation) Create(ing *api.Ingress) error {
 	go i.printInfoForDebug(ing)
 	return nil
 }
+
 func (i *ingressInvocation) printInfoForDebug(ing *api.Ingress) {
 	for {
 		pods, err := i.KubeClient.CoreV1().Pods(ing.Namespace).List(metav1.ListOptions{
